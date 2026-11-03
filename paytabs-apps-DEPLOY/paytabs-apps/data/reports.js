@@ -26,16 +26,16 @@ function pad(n) { return n < 10 ? "0" + n : "" + n; }
 const GENERATED_ON_OVERRIDES = {
   376188: "02/Nov/2026 2:20",
   366764: "02/NOV/2026 2:50",
-  375874: "03/Nov/2026 5:50"
+  375407: "03/Nov/2026 5:50"
 };
 
 // ── Manual "Title" overrides ────────────────────────────────────────────
 // Hard-code by hand: left = report ID, right = the Title text to show.
 // Any ID not listed here keeps its original title.
 const TITLE_OVERRIDES = {
-  376188: "UAE Payouts 03/Nov/2026",
-  366764: "UAE Payouts 03/Nov/2026",
-  375874: "PT2 Data_NI_05082026"
+  376188: "UAE Payouts 02/Nov/2026",
+  366764: "UAE Payouts 02/Nov/2026",
+  375407: "PT2 Data_NI_05082026"
 };
 
 // Page 1 mirrors the real PayTabs screenshot exactly.
