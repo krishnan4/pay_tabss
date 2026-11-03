@@ -24,9 +24,9 @@ function pad(n) { return n < 10 ? "0" + n : "" + n; }
 // Hard-code by hand: left = report ID, right = the Generated On text to show.
 // Any ID not listed here keeps its original Generated On value.
 const GENERATED_ON_OVERRIDES = {
-  376188: "03/Nov/2026 2:20",
-  366764: "03/NOV/2026 2:50",
-  366667: "03/Nov/2026 4:25"
+  376188: "02/Nov/2026 2:20",
+  366764: "02/NOV/2026 2:50",
+  366667: "03/Nov/2026 5:50"
 };
 
 // ── Manual "Title" overrides ────────────────────────────────────────────
