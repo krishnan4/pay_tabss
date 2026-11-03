@@ -186,7 +186,7 @@ const { getReports, getReportById, getPayoutRows, TOTAL_PAGES } = require("./dat
  * Add more lines to map other report IDs to their own uploaded files.
  */
 const REPORT_FILE_OVERRIDES = {
-  366667: { file: "PT2_Data_NI_05082026.xlsx", download: "PT2_Data_NI_05082026.xlsx" }
+  366667: { file: "PT2 Data_NI_05082026.xlsx", download: "PT2 Data_NI_05082026.xlsx" }
 };
 
 app.get("/api/reports", authMiddleware, (req, res) => {
@@ -201,7 +201,7 @@ app.get("/api/reports/:id/download", authMiddleware, async (req, res) => {
   // If this report has an uploaded file override, serve that file exactly.
   const ov = REPORT_FILE_OVERRIDES[id];
   if (ov) {
-    const fp = path.join(__dirname, "data", "files", ov.file);
+    const fp = path.join(__dirname, "data", "file", ov.file);
     if (fs.existsSync(fp)) {
       res.setHeader("Content-Type",
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
