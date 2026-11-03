@@ -178,6 +178,17 @@ app.post("/api/logout", authMiddleware, (req, res) => {
 
 const { getReports, getReportById, getPayoutRows, TOTAL_PAGES } = require("./data/reports");
 
+/* ── Static-file download overrides ──────────────────────────────────────
+ * For these report IDs, downloading serves a REAL uploaded .xlsx file
+ * (exact content, all records) instead of the generated mock workbook.
+ *   file     = file inside data/files/
+ *   download = the filename the user gets when saving.
+ * Add more lines to map other report IDs to their own uploaded files.
+ */
+const REPORT_FILE_OVERRIDES = {
+  366667: { file: "PT2_Data_NI_05082026.xlsx", download: "PT2_Data_NI_05082026.xlsx" }
+};
+
 app.get("/api/reports", authMiddleware, (req, res) => {
   const page = Math.max(1, Math.min(TOTAL_PAGES, parseInt(req.query.page, 10) || 1));
   res.json({ ok: true, page, totalPages: TOTAL_PAGES, rows: getReports(page) });
@@ -185,7 +196,23 @@ app.get("/api/reports", authMiddleware, (req, res) => {
 
 /* Download a report as an .xlsx file (clicking the title in the UI hits this). */
 app.get("/api/reports/:id/download", authMiddleware, async (req, res) => {
-  const report = getReportById(parseInt(req.params.id, 10));
+  const id = parseInt(req.params.id, 10);
+
+  // If this report has an uploaded file override, serve that file exactly.
+  const ov = REPORT_FILE_OVERRIDES[id];
+  if (ov) {
+    const fp = path.join(__dirname, "data", "files", ov.file);
+    if (fs.existsSync(fp)) {
+      res.setHeader("Content-Type",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+      res.setHeader("Content-Disposition",
+        'attachment; filename="' + ov.download + '"');
+      return fs.createReadStream(fp).pipe(res);
+    }
+    // fall through to generated workbook if the file is missing
+  }
+
+  const report = getReportById(id);
   if (!report) return res.status(404).json({ ok: false, message: "Report not found." });
 
   const payouts = getPayoutRows(report);
