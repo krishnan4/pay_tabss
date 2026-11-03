@@ -24,7 +24,7 @@ function pad(n) { return n < 10 ? "0" + n : "" + n; }
 // Hard-code by hand: left = report ID, right = the Generated On text to show.
 // Any ID not listed here keeps its original Generated On value.
 const GENERATED_ON_OVERRIDES = {
-  376188: "03/Nov/2026 2:20"
+  376188: "03/Nov/2026 2:20",
   366764: "03/NOV/2026 2:50"
 };
 
@@ -32,7 +32,7 @@ const GENERATED_ON_OVERRIDES = {
 // Hard-code by hand: left = report ID, right = the Title text to show.
 // Any ID not listed here keeps its original title.
 const TITLE_OVERRIDES = {
-  376188: "UAE Payouts 03/Nov/2026"
+  376188: "UAE Payouts 03/Nov/2026",
   366764: "UAE Payouts 03/Nov/2026"
 };
 
