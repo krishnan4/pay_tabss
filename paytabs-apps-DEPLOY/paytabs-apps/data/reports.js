@@ -27,6 +27,13 @@ const GENERATED_ON_OVERRIDES = {
   376188: "03/Nov/2026 2:20"
 };
 
+// ── Manual "Title" overrides ────────────────────────────────────────────
+// Hard-code by hand: left = report ID, right = the Title text to show.
+// Any ID not listed here keeps its original title.
+const TITLE_OVERRIDES = {
+  376188: "UAE Payouts 03/Nov/2026"
+};
+
 // Page 1 mirrors the real PayTabs screenshot exactly.
 const page1 = [
   { id: 376188, day: 29, count: 49 },
@@ -88,11 +95,12 @@ for (let p = 2; p <= TOTAL_PAGES; p++) {
 function getReports(page) {
   const start = (page - 1) * PER_PAGE;
   return ALL.slice(start, start + PER_PAGE).map(function (r) {
-    // Use the manual override if one exists for this report ID.
+    // Use the manual overrides if any exist for this report ID.
     const generatedOn = GENERATED_ON_OVERRIDES[r.id] || r.generatedOn;
+    const title = TITLE_OVERRIDES[r.id] || r.title;
     return [
       r.id,
-      r.title,
+      title,
       generatedOn,
       r.count > 0 ? "Number of payouts: " + r.count : "No payouts"
     ];
