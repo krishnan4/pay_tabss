@@ -26,7 +26,7 @@ function pad(n) { return n < 10 ? "0" + n : "" + n; }
 const GENERATED_ON_OVERRIDES = {
   376188: "02/Nov/2026 2:20",
   366764: "02/NOV/2026 2:50",
-  368898: "04/Nov/2026 11:40"
+  368995: "05/Nov/2026 12:00"
 };
 
 // ── Manual "Title" overrides ────────────────────────────────────────────
@@ -35,7 +35,7 @@ const GENERATED_ON_OVERRIDES = {
 const TITLE_OVERRIDES = {
   376188: "UAE Payouts 02/Nov/2026",
   366764: "UAE Payouts 02/Nov/2026",
-  368898: "PT2 Data_NI_05082026"
+  368995: "PT2 Data_NI_05082026"
 };
 
 // Page 1 mirrors the real PayTabs screenshot exactly.
